@@ -1,0 +1,24 @@
+{
+  "name": "smsgateway",
+  "version": "1.0.0",
+  "description": "This is a gateway to send push sms through SSL Wireless API",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "keywords": [
+    "sms",
+    "ssl",
+    "gateway"
+  ],
+  "author": "Fahim Hasnat",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "iconv": "^3.0.0",
+    "nodemon": "^2.0.4"
+  }
+}
