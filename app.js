@@ -23,7 +23,7 @@ app.use((req, res, next) => {
     );
     res.setHeader(
         'Access-Control-Allow-Headers',
-        'Content-Type, Authorization, responseType'
+        'Content-Type, Authorization, responseType,charset=utf-8'
     );
     next();
 });
@@ -44,9 +44,9 @@ app.use((error, req, res, next) => {
 const axios = require("axios");
 app.get('/wow', (req, res) => {
     let payload = {
-        message: "আপনার অর্ডারটি",
+        message: "বাংলাদেশ",
         phnNumber: "01746094342",
-        orderID: 70
+        orderID: 229
     }
     axios.post("http://localhost:8001/send", payload).then(response => {
         res.send(response);

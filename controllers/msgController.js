@@ -4,17 +4,20 @@ exports.sendMessage = async (req, res, next) => {
     try {
         console.log(req.body);
         let { message, phnNumber, orderID } = req.body;
-        console.log(message.toString('ucs2be'));
-        var Buffer = require('buffer').Buffer;
-        var Iconv = require('iconv').Iconv;
 
-        var iconv = new Iconv('UTF-8', 'UCS-2BE');
-        var buffer = iconv.convert(message);
+        // const punycode = require('punycode');
+        // let unicode = punycode.ucs2.decode('ধ');
 
-        console.log("Unicode :", buffer.toString().toUpperCase());
+        // const unicode = message.split("").map((v, i) => { return message.charCodeAt(i) });
+        // console.log(unicode.join(""));
+        // console.log('\\u' + parseInt(unicode, 16));
+        const hex = new Buffer.from(message).toString('hex');
+
+        console.log(hex.toUpperCase());
+
         var apiEnd = 'https://sms.sslwireless.com/pushapi/dynamic/server.php';
         let payload = "user=" + encodeURI(process.env.user) + "&pass=" + encodeURI(process.env.pass) + "&sid=" +
-            encodeURI(process.env.sid) + "&sms[0][0]=" + `${phnNumber}` + "&sms[0][1]=" + encodeURI(`${buffer.toString().toUpperCase()}`) + " & sms[0][2]=" + `${orderID}` + "";
+            encodeURI(process.env.sid) + "&sms[0][0]=" + `${phnNumber}` + "&sms[0][1]=" + encodeURI(`${hex.toUpperCase()}`) + " & sms[0][2]=" + `${orderID}` + "";
         axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
         try {
