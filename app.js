@@ -44,9 +44,9 @@ app.use((error, req, res, next) => {
 const axios = require("axios");
 app.get('/wow', (req, res) => {
     let payload = {
-        message: "বাংলাদেশ",
+        message: "অর্ডার",
         phnNumber: "01746094342",
-        orderID: 229
+        orderID: 322
     }
     axios.post("http://localhost:8001/send", payload).then(response => {
         res.send(response);
